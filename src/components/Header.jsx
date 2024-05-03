@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import "../css/header.css";
+
 const Header = function () {
   // js 코딩 자리
   const header = useRef(null);
@@ -9,6 +10,7 @@ const Header = function () {
     // const header = document.querySelector(".header");
     const headerActiveClass = "line-active";
     const headerActiveValue = 0;
+
     function showLine(_html, _tgY, _active, _scY) {
       if (_scY > _tgY) {
         _html.classList.add(_active);
@@ -22,6 +24,7 @@ const Header = function () {
       headerActiveClass,
       window.scrollY
     );
+
     window.addEventListener("scroll", function () {
       showLine(
         header.current,
