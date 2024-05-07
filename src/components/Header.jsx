@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import "../css/header.css";
 
-const Header = function () {
+const Header = function ({ clickMbbt }) {
   // js 코딩 자리
   const header = useRef(null);
+  // 모바일 메뉴 관련
+  const mbBt = useRef(null);
 
   // JSX Element  렌더링 완료시
   useEffect(() => {
@@ -47,6 +49,16 @@ const Header = function () {
 
   // JSON 연동시
   useEffect(() => {
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    mbBt.current.addEventListener("click", (e) => {
+      // a태그 막기
+      e.preventDefault();
+      // 상위 컴포넌트로부터 Props 전달 받아 실행
+      clickMbbt();
+    });
     return () => {};
   }, []);
 
@@ -142,7 +154,7 @@ const Header = function () {
               <a href="#"></a>
             </li>
             <li className="mobile-menu">
-              <a href="#"></a>
+              <a href="https://www.naver.com/" ref={mbBt}></a>
             </li>
           </ul>
         </nav>
