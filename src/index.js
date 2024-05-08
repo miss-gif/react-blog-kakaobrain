@@ -23,7 +23,7 @@ const Wrap = () => {
   return (
     <div className="wrap">
       <Header clickMbbt={clickMbbt} />
-      <MbHeader mbMenuOpen={mbMenuOpen} />
+      <MbHeader mbMenuOpen={mbMenuOpen} setMbMenuOpen={setMbMenuOpen} />
       <Main />
       <Footer />
     </div>
@@ -32,7 +32,7 @@ const Wrap = () => {
 
 root.render(
   <>
-    <Popup />1
+    <Popup />
     <Wrap />
   </>
 );
