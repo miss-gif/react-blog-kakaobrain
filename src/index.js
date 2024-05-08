@@ -22,7 +22,7 @@ const Wrap = () => {
   // js 코드 자리
   return (
     <div className="wrap">
-      <Header clickMbbt={clickMbbt} />
+      <Header clickMbbt={clickMbbt} mbMenuOpen={mbMenuOpen} />
       <MbHeader mbMenuOpen={mbMenuOpen} setMbMenuOpen={setMbMenuOpen} />
       <Main />
       <Footer />

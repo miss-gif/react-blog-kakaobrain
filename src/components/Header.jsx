@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import "../css/header.css";
+import SlideLogo from "./SlideLogo";
 
-const Header = function ({ clickMbbt }) {
+const Header = function ({ clickMbbt, mbMenuOpen }) {
   // js 코딩 자리
   const header = useRef(null);
   // 모바일 메뉴 관련
@@ -59,8 +60,21 @@ const Header = function ({ clickMbbt }) {
       // 상위 컴포넌트로부터 Props 전달 받아 실행
       clickMbbt();
     });
-    return () => {};
+    return () => {
+      // 이벤트 삭제 함수 추가해야함
+    };
   }, []);
+
+  // 버튼의 디자인을 위한 클래스 추가 / 제거
+  useEffect(() => {
+    // 업데이트 기능
+    if (mbMenuOpen) {
+      mbBt.current.classList.remove("mobile-menu-open");
+    } else {
+      mbBt.current.classList.remove("mobile-menu-open");
+    }
+    return () => {};
+  }, [mbMenuOpen]);
 
   return (
     <header className="header" ref={header}>
@@ -73,68 +87,7 @@ const Header = function ({ clickMbbt }) {
               alt="카카오브레인 블로그"
               className="header-logo-img"
             />
-            {/* <!-- start 로고 슬라이드 --> */}
-            <div className="header-logo-slide" id="logo-slide">
-              <div className="swiper swlogo">
-                <div className="swiper-wrapper">
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog01.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog02.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog03.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog04.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog05.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog06.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog07.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog08.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                  <div className="swiper-slide">
-                    <img
-                      src="./images/etc/logo-blog09.png"
-                      alt="카카오브레인 블로그"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* <!-- end 로고 슬라이드 --> */}
+            <SlideLogo />
           </a>
         </div>
 
