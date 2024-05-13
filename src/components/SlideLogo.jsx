@@ -1,11 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const SlideLogo = () => {
+console.log("일반 JS 영역");
+// let logoSlide; // undefined
+
+const SlideLogo = ({ isOver }) => {
+  console.log("와~ 로고 컴포넌트를 그렸어요.");
+  const [logoSlide, setLogoSlide] = useState(null);
   // js 코드 자리
   //   const headerLogoLink = useRef(null);
 
   useEffect(() => {
-    const logoSlide = new Swiper(".swlogo", {
+    console.log("useEffect : 컴포넌트 태어날 때 한~~ 번 만 실행  --- []");
+    const slide = new Swiper(".swlogo", {
       effect: "fade",
       speed: 500,
       autoplay: {
@@ -13,7 +19,11 @@ const SlideLogo = () => {
         disableOnInteraction: false,
       },
     });
-    logoSlide.autoplay.stop();
+
+    slide.autoplay.stop();
+
+    setLogoSlide(slide);
+
     // const headerLogoLink = document.querySelector(".header-logo-link");
     // headerLogoLink.addEventListener("mouseenter", function () {
     //   logoSlide.autoplay.start();
@@ -25,6 +35,20 @@ const SlideLogo = () => {
 
     return () => {};
   }, []);
+
+  useEffect(() => {
+    console.log("useEffect : isOver  --- [isOver]");
+    if (logoSlide) {
+      if (isOver) {
+        logoSlide.autoplay.start();
+      } else {
+        logoSlide.autoplay.stop();
+        logoSlide.slideTo(0);
+      }
+    }
+    return () => {};
+  }, [isOver]);
+
   return (
     <div className="header-logo-slide" id="logo-slide">
       <div className="swiper swlogo">

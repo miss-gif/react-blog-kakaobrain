@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const Wrap = () => {
   const [mbMenuOpen, setMbMenuOpen] = useState(false);
   const clickMbbt = () => {
-    setMbMenuOpen((prev) => {
+    setMbMenuOpen(prev => {
       return !prev;
     });
   };
@@ -34,5 +34,5 @@ root.render(
   <>
     <Popup />
     <Wrap />
-  </>
+  </>,
 );
