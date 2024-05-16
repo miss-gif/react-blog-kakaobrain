@@ -1,16 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
-console.log("일반 JS 영역");
-// let logoSlide; // undefined
-
 const SlideLogo = ({ isOver }) => {
-  console.log("와~ 로고 컴포넌트를 그렸어요.");
   const [logoSlide, setLogoSlide] = useState(null);
   // js 코드 자리
   //   const headerLogoLink = useRef(null);
 
   useEffect(() => {
-    console.log("useEffect : 컴포넌트 태어날 때 한~~ 번 만 실행  --- []");
     const slide = new Swiper(".swlogo", {
       effect: "fade",
       speed: 500,
@@ -37,7 +32,6 @@ const SlideLogo = ({ isOver }) => {
   }, []);
 
   useEffect(() => {
-    console.log("useEffect : isOver  --- [isOver]");
     if (logoSlide) {
       if (isOver) {
         logoSlide.autoplay.start();

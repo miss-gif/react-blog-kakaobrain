@@ -1,20 +1,13 @@
 import React from "react";
 import "../css/maintop.css";
 import SlideTopMain from "./SlideTopMain";
-
+import SlideTopBanner from "./SlideTopBanner";
 const MainTop = () => {
   return (
-    <>
-      <div className="main-top">
-        <SlideTopMain />
-        <div className="main-top-banner br-20">
-          <div className="swiper bannerslide">
-            <div className="swiper-wrapper"></div>
-            <div className="swiper-pagination"></div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="main-top">
+      <SlideTopMain></SlideTopMain>
+      <SlideTopBanner></SlideTopBanner>
+    </div>
   );
 };
 
