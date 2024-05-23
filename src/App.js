@@ -1,10 +1,49 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { deleteTodos, getOneTodos, getTodos, postTodos, putTodos } from "./apis/todos";
+import { deleteUser, getUser, getUsers, postUser, putUser } from "./apis/users";
 
 function App() {
   return (
     <div className="App">
+      <div>
+        <button
+          onClick={() => {
+            getUsers();
+          }}
+        >
+          사용자 전체 목록 get
+        </button>
+        <button
+          onClick={() => {
+            getUser("2");
+          }}
+        >
+          사용자 한명 get
+        </button>
+        <button
+          onClick={() => {
+            postUser({ id: "3", name: "홍길동", role: "개발자" });
+          }}
+        >
+          사용자 등록 post
+        </button>
+        <button
+          onClick={() => {
+            putUser({ id: "3", name: "김길동", role: "리액트 개발자" });
+          }}
+        >
+          사용자 수정 put
+        </button>
+        <button
+          onClick={() => {
+            deleteUser("3");
+          }}
+        >
+          사용자 삭제 delete
+        </button>
+      </div>
+
       <div>
         <button
           onClick={() => {
