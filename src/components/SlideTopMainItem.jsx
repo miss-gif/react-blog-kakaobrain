@@ -13,10 +13,7 @@ const SlideTopMainItem = ({ url, pic, title }) => {
   return (
     <div className="swiper-slide">
       <a href={url} style={styleObj}>
-        <p
-          className="slide-title"
-          dangerouslySetInnerHTML={{ __html: title }}
-        ></p>
+        <p className="slide-title" dangerouslySetInnerHTML={{ __html: title }}></p>
       </a>
     </div>
   );

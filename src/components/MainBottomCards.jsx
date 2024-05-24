@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MainBottomCardsItem from "./MainBottomCardsItem";
+import { getCards, getNews } from "../apis/api";
 
 const MainBottomCards = () => {
   const [cardSlide, setCardSlide] = useState(null);
@@ -24,7 +25,7 @@ const MainBottomCards = () => {
           slidesPerView: 4,
           spaceBetween: 20,
         });
-        // 즉시 갱신이 안되고 있다. (useEffect에서 체크)
+        // 즉시 갱신이 안되고 있다. (useEffect 에서 체크하도록 적용)
         // useState 는 함수가 종료되어야 화면에 반영된다.
         setCardSlide(tempSlide);
       }
@@ -40,21 +41,15 @@ const MainBottomCards = () => {
     };
   }, [cardSlide]);
 
-  // hook 자리
+  const getCardsCall = async () => {
+    const result = await getCards();
+    setCardList(result);
+    makeCardSlide();
+  };
   useEffect(() => {
-    const dataUrl = "./apis/cards.json";
-    fetch(dataUrl)
-      .then(response => {
-        const result = response.json();
-        return result;
-      })
-      .then(result => {
-        setCardList(result);
-        makeCardSlide();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // axiso 호출 조심하자. await 필요
+    getCardsCall();
+
     return () => {};
   }, []);
 
