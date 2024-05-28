@@ -37,28 +37,13 @@ const Header = function ({ clickMbbt, mbMenuOpen }) {
         _html.classList.remove(_active);
       }
     }
-    showLine(
-      header.current,
-      headerActiveValue,
-      headerActiveClass,
-      window.scrollY,
-    );
+    showLine(header.current, headerActiveValue, headerActiveClass, window.scrollY);
     window.addEventListener("scroll", function () {
-      showLine(
-        header.current,
-        headerActiveValue,
-        headerActiveClass,
-        window.scrollY,
-      );
+      showLine(header.current, headerActiveValue, headerActiveClass, window.scrollY);
     });
     return () => {
       window.removeEventListener("scroll", function () {
-        showLine(
-          header.current,
-          headerActiveValue,
-          headerActiveClass,
-          window.scrollY,
-        );
+        showLine(header.current, headerActiveValue, headerActiveClass, window.scrollY);
       });
     };
   }, []);
@@ -98,16 +83,8 @@ const Header = function ({ clickMbbt, mbMenuOpen }) {
       <div className="inner">
         {/* <!-- 상단 로고 --> */}
         <div className="header-logo">
-          <a
-            href="index.html"
-            className="header-logo-link"
-            ref={headerLogoLink}
-          >
-            <img
-              src="./images/etc/logo-kakao.png"
-              alt="카카오브레인 블로그"
-              className="header-logo-img"
-            />
+          <a href="index.html" className="header-logo-link" ref={headerLogoLink}>
+            <img src="./images/etc/logo-kakao.png" alt="카카오브레인 블로그" className="header-logo-img" />
             <SlideLogo isOver={isOver}></SlideLogo>
           </a>
         </div>

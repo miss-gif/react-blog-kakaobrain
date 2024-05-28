@@ -18,6 +18,21 @@ const SlideTopMain = () => {
   // swipe 로 만든 html 을 제어한다.
   const topSlide = useRef(null);
 
+  // 여기
+  const swiperOption = {
+    loop: true,
+    speed: 800,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: true,
+    modules: [Autoplay, Pagination],
+    onInit: swiper => {
+      topSlide.current = swiper;
+    },
+  };
+
   const getTopSlideCall = async () => {
     const result = await getTopSlide();
     setList(result);
@@ -37,30 +52,15 @@ const SlideTopMain = () => {
 
   return (
     <div className="main-top-slide br-20">
-      <Swiper
-        className="topslide"
-        ref={slideArea}
-        loop={true}
-        speed={800}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          el: ".swiper-pagination",
-          clickable: true,
-        }}
-        modules={[Autoplay, Pagination]}
-        onInit={swiper => {
-          topSlide.current = swiper;
-        }}
-      >
+      <Swiper className="topslide" ref={slideArea} {...swiperOption}>
         {/* 이유는 아래처럼 자동 코등 되니까.. */}
         <div className="swiper-wrapper"></div>
 
         {/* 아이템 배치 */}
         {list.map((item, index, arr) => (
-          <SlideTopMainItem key={index} url={item.url} pic={item.pic} title={item.title}></SlideTopMainItem>
+          <SwiperSlide key={index}>
+            <SlideTopMainItem url={item.url} pic={item.pic} title={item.title}></SlideTopMainItem>
+          </SwiperSlide>
         ))}
       </Swiper>
     </div>

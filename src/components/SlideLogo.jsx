@@ -22,10 +22,23 @@ const SlideLogo = ({ isOver }) => {
     "logo-blog08.png",
     "logo-blog09.png",
   ];
+  // Swiper 의 옵션은 별도로 변수에 담아서 관리추천
+  const swiperOption = {
+    speed: 500,
+    effect: "fade",
+    autoplay: { delay: 1000, disableOnInteraction: false },
+    modules: [EffectFade, Autoplay],
+    onInit: swiper => {
+      // 매개변수 swiper 는 현재 생성된 슬라이드를 말함.
+      swiper.autoplay.stop();
+      swLogoSlide.current = swiper;
+    },
+  };
 
   useEffect(() => {
     return () => {};
   }, []);
+
   return (
     <div
       className="header-logo-slide"
@@ -38,19 +51,9 @@ const SlideLogo = ({ isOver }) => {
         swLogoSlide.current?.slideTo(0);
       }}
     >
-      <Swiper
-        speed={500}
-        effect={"fade"}
-        autoplay={{ delay: 1000, disableOnInteraction: false }}
-        modules={[EffectFade, Autoplay]}
-        onInit={swiper => {
-          // 매개변수 swiper 는 현재 생성된 슬라이드를 말함.
-          swiper.autoplay.stop();
-          swLogoSlide.current = swiper;
-        }}
-      >
+      <Swiper {...swiperOption}>
         {imgArr.map((item, index) => (
-          <SwiperSlide key={index} style={{ background: "fff" }}>
+          <SwiperSlide key={index} style={{ background: "#fff" }}>
             <img src={`./images/etc/${item}`} alt="카카오브레인 블로그" />
           </SwiperSlide>
         ))}
